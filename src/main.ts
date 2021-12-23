@@ -3,8 +3,23 @@ import { NestFactory, Reflector } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+import { readFile } from 'fs/promises';
+
+import {
+  FastifyAdapter,
+  NestFastifyApplication,
+} from '@nestjs/platform-fastify';
+
+const bootstrap = async () => {
+  const app = await NestFactory.create<NestFastifyApplication>(
+    AppModule,
+    new FastifyAdapter({
+      https: {
+        cert: await readFile('./secrets/cert.crt', { encoding: 'utf-8' }),
+        key: await readFile('./secrets/cert.key', { encoding: 'utf-8' }),
+      },
+    }),
+  );
 
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
   app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
@@ -18,6 +33,6 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   await app.listen(3000, '0.0.0.0');
-}
+};
 
 bootstrap();
