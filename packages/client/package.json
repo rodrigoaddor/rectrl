@@ -1,14 +1,14 @@
 {
   "name": "rectrl-client",
   "version": "1.0.0",
-  "main": "index.js",
   "author": "Rodrigo Addor <rodrigotladdor@gmail.com>",
   "license": "MIT",
   "private": true,
   "source": "src/index.html",
   "scripts": {
     "start": "parcel",
-    "build": "parcel build"
+    "build": "parcel build",
+    "prebuild": "rimraf dist"
   },
   "dependencies": {
     "@emotion/react": "^11.7.1",
@@ -47,7 +47,14 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "prettier": "^2.5.1",
+    "rimraf": "^3.0.2",
     "typescript": "^4.5.4"
   },
-  "browserslist": "> 0.5%, last 2 versions, not dead"
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "targets": {
+    "": {
+      "publicUrl": "./"
+    }
+  }
+  
 }
