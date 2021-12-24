@@ -1,0 +1,119 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["plugin:react/recommended", "airbnb-typescript", "prettier", "plugin:react/jsx-runtime"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["react", "react-hooks", "import", "@typescript-eslint", "prettier"],
+  "rules": {
+    "prettier/prettier": "warn",
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-wrap-multilines": "off",
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+    "import/prefer-default-export": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    "no-undef": "off",
+    "no-plusplus": "off",
+    "arrow-parens": "off",
+    "react/prop-types": "off",
+    "no-param-reassign": "off",
+    "no-nested-ternary": "off",
+    "object-curly-newline": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "function-paren-newline": "off",
+    "implicit-arrow-linebreak": "off",
+    "spaced-comment": [
+      "error",
+      "always",
+      {
+        "line": {
+          "markers": ["#region", "#endregion"]
+        }
+      }
+    ],
+    "camelcase": "off",
+    "import/no-cycle": "off",
+    "import/order": [
+      "warn",
+      {
+        "groups": ["builtin", "external", "internal", ["parent", "sibling"]],
+        "pathGroups": [
+          {
+            "pattern": "+(react|react-dom)",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "*react*",
+            "group": "external",
+            "position": "before"
+          },
+          {
+            "pattern": "@mui/material/[A-Z]**",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "@mui/icons-material/**",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "@mui/material/[^A-Z]**",
+            "group": "external",
+            "position": "after"
+          },
+          {
+            "pattern": "pages/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "components/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "assets/**",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["react"],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
+}
